@@ -73,6 +73,57 @@ func test_validate_rejects_bad_enum_value() -> void:
 	assert_gt(errors.size(), 0, "invalid offense type should fail enum validation")
 
 
+func test_load_country_rejects_duplicate_offense_ids() -> void:
+	# Regression test: get_offenses_for_context() scans the raw offenses
+	# array while get_offense() resolves through an id-keyed index, so a
+	# duplicate id would make those two lookup paths disagree. Duplicate
+	# ids must be rejected at load time instead.
+	var engine := LawEngine.new()
+	var dup_data := {
+		"country": "CZ",
+		"country_name": {"cs": "Česko", "en": "Czechia"},
+		"currency": "CZK",
+		"offenses": [
+			{
+				"id": "dup_offense",
+				"type": "traffic",
+				"name": {"cs": "Test 1", "en": "Test 1"},
+				"zones": ["road"],
+				"time_of_day": ["any"],
+				"sanctions": [
+					{
+						"code": "§1",
+						"name": {"cs": "Test", "en": "Test"},
+						"fine_min": 0, "fine_max": 0,
+						"warning_allowed": true, "imprisonment_possible": false,
+						"recidivism_multiplier": 1.0, "min_priors": 0
+					}
+				]
+			},
+			{
+				"id": "dup_offense",
+				"type": "public_order",
+				"name": {"cs": "Test 2", "en": "Test 2"},
+				"zones": ["city_center"],
+				"time_of_day": ["any"],
+				"sanctions": [
+					{
+						"code": "§2",
+						"name": {"cs": "Test", "en": "Test"},
+						"fine_min": 0, "fine_max": 0,
+						"warning_allowed": true, "imprisonment_possible": false,
+						"recidivism_multiplier": 1.0, "min_priors": 0
+					}
+				]
+			}
+		]
+	}
+	var errors := engine.validate(dup_data)
+	assert_eq(errors.size(), 0, "duplicate ids are a semantic issue, not a schema-shape one")
+	assert_false(engine._find_duplicate_offense_ids(dup_data).is_empty(),
+		"duplicate offense id should be flagged")
+
+
 func test_validate_accepts_loaded_cz_data() -> void:
 	var engine := LawEngine.new()
 	# The file only counts as valid if load_country's own validate() pass

@@ -57,10 +57,32 @@ func load_country(code: String) -> bool:
 		last_errors = errors
 		return false
 
+	var duplicate_errors := _find_duplicate_offense_ids(data)
+	if not duplicate_errors.is_empty():
+		last_errors = duplicate_errors
+		return false
+
 	country_code = code
 	country_data = data
 	_build_offense_index()
 	return true
+
+
+## The schema validator (a draft-07 subset) has no uniqueItems support, so
+## offense id uniqueness — which _build_offense_index()/get_offense() rely on
+## to resolve a given id to a single offense — is checked here instead. A
+## duplicate id would otherwise let get_offenses_for_context() return two
+## offense entries sharing an id while get_offense()/get_sanctions_for_offense()
+## silently resolve only the last one, showing mismatched sanctions.
+func _find_duplicate_offense_ids(data: Dictionary) -> Array[String]:
+	var errors: Array[String] = []
+	var seen: Dictionary = {}
+	for offense: Dictionary in data.get("offenses", []):
+		var offense_id: String = String(offense.get("id", ""))
+		if seen.has(offense_id):
+			errors.append("Duplicate offense id '%s'." % offense_id)
+		seen[offense_id] = true
+	return errors
 
 
 func is_loaded() -> bool:
