@@ -1,0 +1,118 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://policesim.dev/schemas/laws.schema.json",
+  "title": "PoliceSim Country Law Definition",
+  "description": "Schema for a single country's law data file consumed by the Law Engine (src/systems/law_engine.gd). One file per country at data/laws/{COUNTRY}.json, where COUNTRY is the ISO 3166-1 alpha-2 code.",
+  "type": "object",
+  "required": ["country", "country_name", "currency", "offenses"],
+  "additionalProperties": false,
+  "properties": {
+    "country": {
+      "type": "string",
+      "pattern": "^[A-Z]{2}$",
+      "description": "ISO 3166-1 alpha-2 country code. Must match the file name."
+    },
+    "country_name": { "$ref": "#/definitions/localized_text" },
+    "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$",
+      "description": "ISO 4217 currency code."
+    },
+    "offenses": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/definitions/offense" }
+    }
+  },
+  "definitions": {
+    "localized_text": {
+      "type": "object",
+      "required": ["cs", "en"],
+      "additionalProperties": false,
+      "properties": {
+        "cs": { "type": "string", "minLength": 1 },
+        "en": { "type": "string", "minLength": 1 }
+      }
+    },
+    "offense": {
+      "type": "object",
+      "required": ["id", "type", "name", "zones", "time_of_day", "sanctions"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9_]+$",
+          "description": "Unique, stable offense identifier used as a lookup key by the Law Engine."
+        },
+        "type": {
+          "type": "string",
+          "enum": ["traffic", "violent", "property", "public_order"]
+        },
+        "name": { "$ref": "#/definitions/localized_text" },
+        "zones": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "enum": ["city_center", "residential", "industrial", "road", "rural"]
+          }
+        },
+        "time_of_day": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "enum": ["day", "night", "any"]
+          },
+          "description": "'any' matches both day and night."
+        },
+        "sanctions": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/definitions/sanction" }
+        }
+      }
+    },
+    "sanction": {
+      "type": "object",
+      "required": [
+        "code",
+        "name",
+        "fine_min",
+        "fine_max",
+        "warning_allowed",
+        "imprisonment_possible",
+        "recidivism_multiplier",
+        "min_priors"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Legal paragraph/article reference, e.g. '§125c odst. 1 písm. f)'."
+        },
+        "name": { "$ref": "#/definitions/localized_text" },
+        "fine_min": { "type": "integer", "minimum": 0 },
+        "fine_max": { "type": "integer", "minimum": 0 },
+        "warning_allowed": {
+          "type": "boolean",
+          "description": "Whether a verbal/written warning may be issued instead of this sanction."
+        },
+        "imprisonment_possible": { "type": "boolean" },
+        "imprisonment_days_min": { "type": "integer", "minimum": 0 },
+        "imprisonment_days_max": { "type": "integer", "minimum": 0 },
+        "recidivism_multiplier": {
+          "type": "number",
+          "minimum": 1,
+          "description": "Fine range is multiplied by this value raised to the power of the NPC's prior-offense count (capped by the engine) when recidivism applies."
+        },
+        "min_priors": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Minimum number of prior offenses (of this same offense id) an NPC must have for this sanction tier to be offered at all."
+        }
+      }
+    }
+  }
+}
