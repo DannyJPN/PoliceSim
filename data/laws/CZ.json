@@ -1,0 +1,421 @@
+{
+  "country": "CZ",
+  "country_name": { "cs": "Česká republika", "en": "Czech Republic" },
+  "currency": "CZK",
+  "offenses": [
+    {
+      "id": "speeding_minor",
+      "type": "traffic",
+      "name": { "cs": "Překročení rychlosti do 20 km/h", "en": "Speeding (up to 20 km/h over limit)" },
+      "zones": ["road"],
+      "time_of_day": ["any"],
+      "sanctions": [
+        {
+          "code": "§125c odst. 1 písm. f) bod 4",
+          "name": { "cs": "Bloková pokuta", "en": "On-the-spot fine" },
+          "fine_min": 1000,
+          "fine_max": 2500,
+          "warning_allowed": true,
+          "imprisonment_possible": false,
+          "imprisonment_days_min": 0,
+          "imprisonment_days_max": 0,
+          "recidivism_multiplier": 1.3,
+          "min_priors": 0
+        }
+      ]
+    },
+    {
+      "id": "speeding_major",
+      "type": "traffic",
+      "name": { "cs": "Překročení rychlosti o 40 km/h a více", "en": "Speeding (40 km/h or more over limit)" },
+      "zones": ["road"],
+      "time_of_day": ["any"],
+      "sanctions": [
+        {
+          "code": "§125c odst. 1 písm. a)",
+          "name": { "cs": "Správní řízení – pokuta", "en": "Administrative proceeding – fine" },
+          "fine_min": 5000,
+          "fine_max": 10000,
+          "warning_allowed": false,
+          "imprisonment_possible": false,
+          "imprisonment_days_min": 0,
+          "imprisonment_days_max": 0,
+          "recidivism_multiplier": 1.5,
+          "min_priors": 0
+        },
+        {
+          "code": "§125c odst. 1 písm. a) – recidiva",
+          "name": { "cs": "Opakované závažné překročení rychlosti", "en": "Repeated severe speeding" },
+          "fine_min": 10000,
+          "fine_max": 20000,
+          "warning_allowed": false,
+          "imprisonment_possible": false,
+          "imprisonment_days_min": 0,
+          "imprisonment_days_max": 0,
+          "recidivism_multiplier": 1.5,
+          "min_priors": 1
+        }
+      ]
+    },
+    {
+      "id": "drunk_driving",
+      "type": "traffic",
+      "name": { "cs": "Řízení pod vlivem alkoholu", "en": "Driving under the influence of alcohol" },
+      "zones": ["road", "industrial"],
+      "time_of_day": ["any"],
+      "sanctions": [
+        {
+          "code": "§274 odst. 1 tr. zákoníku",
+          "name": { "cs": "Ohrožení pod vlivem návykové látky", "en": "Endangerment while intoxicated" },
+          "fine_min": 25000,
+          "fine_max": 50000,
+          "warning_allowed": false,
+          "imprisonment_possible": true,
+          "imprisonment_days_min": 0,
+          "imprisonment_days_max": 365,
+          "recidivism_multiplier": 1.8,
+          "min_priors": 0
+        },
+        {
+          "code": "§274 odst. 2 tr. zákoníku – recidiva",
+          "name": { "cs": "Opakované řízení pod vlivem", "en": "Repeated driving under the influence" },
+          "fine_min": 50000,
+          "fine_max": 100000,
+          "warning_allowed": false,
+          "imprisonment_possible": true,
+          "imprisonment_days_min": 90,
+          "imprisonment_days_max": 1095,
+          "recidivism_multiplier": 1.8,
+          "min_priors": 1
+        }
+      ]
+    },
+    {
+      "id": "stolen_vehicle_possession",
+      "type": "property",
+      "name": { "cs": "Řízení odcizeného vozidla", "en": "Driving a stolen vehicle" },
+      "zones": ["road", "industrial"],
+      "time_of_day": ["any"],
+      "sanctions": [
+        {
+          "code": "§205 odst. 1 tr. zákoníku",
+          "name": { "cs": "Krádež", "en": "Theft" },
+          "fine_min": 0,
+          "fine_max": 0,
+          "warning_allowed": false,
+          "imprisonment_possible": true,
+          "imprisonment_days_min": 30,
+          "imprisonment_days_max": 730,
+          "recidivism_multiplier": 1.0,
+          "min_priors": 0
+        }
+      ]
+    },
+    {
+      "id": "disorderly_conduct",
+      "type": "public_order",
+      "name": { "cs": "Výtržnictví", "en": "Disorderly conduct" },
+      "zones": ["city_center"],
+      "time_of_day": ["any"],
+      "sanctions": [
+        {
+          "code": "§358 tr. zákoníku",
+          "name": { "cs": "Výtržnictví", "en": "Disorderly conduct" },
+          "fine_min": 2000,
+          "fine_max": 15000,
+          "warning_allowed": true,
+          "imprisonment_possible": true,
+          "imprisonment_days_min": 0,
+          "imprisonment_days_max": 730,
+          "recidivism_multiplier": 1.4,
+          "min_priors": 0
+        }
+      ]
+    },
+    {
+      "id": "petty_theft",
+      "type": "property",
+      "name": { "cs": "Krádež", "en": "Theft" },
+      "zones": ["city_center", "industrial"],
+      "time_of_day": ["any"],
+      "sanctions": [
+        {
+          "code": "§205 odst. 1 tr. zákoníku",
+          "name": { "cs": "Krádež", "en": "Theft" },
+          "fine_min": 1000,
+          "fine_max": 8000,
+          "warning_allowed": true,
+          "imprisonment_possible": false,
+          "imprisonment_days_min": 0,
+          "imprisonment_days_max": 0,
+          "recidivism_multiplier": 1.5,
+          "min_priors": 0
+        },
+        {
+          "code": "§205 odst. 2 tr. zákoníku – recidiva",
+          "name": { "cs": "Krádež spáchaná recidivistou", "en": "Theft committed by a repeat offender" },
+          "fine_min": 0,
+          "fine_max": 0,
+          "warning_allowed": false,
+          "imprisonment_possible": true,
+          "imprisonment_days_min": 30,
+          "imprisonment_days_max": 365,
+          "recidivism_multiplier": 1.0,
+          "min_priors": 1
+        }
+      ]
+    },
+    {
+      "id": "vandalism",
+      "type": "property",
+      "name": { "cs": "Poškození cizí věci", "en": "Vandalism" },
+      "zones": ["city_center", "residential"],
+      "time_of_day": ["any"],
+      "sanctions": [
+        {
+          "code": "§228 tr. zákoníku",
+          "name": { "cs": "Poškození cizí věci", "en": "Damage to another's property" },
+          "fine_min": 1500,
+          "fine_max": 10000,
+          "warning_allowed": true,
+          "imprisonment_possible": true,
+          "imprisonment_days_min": 0,
+          "imprisonment_days_max": 365,
+          "recidivism_multiplier": 1.4,
+          "min_priors": 0
+        }
+      ]
+    },
+    {
+      "id": "illegal_parking",
+      "type": "traffic",
+      "name": { "cs": "Neoprávněné parkování", "en": "Illegal parking" },
+      "zones": ["city_center", "residential"],
+      "time_of_day": ["any"],
+      "sanctions": [
+        {
+          "code": "§125c odst. 1 písm. k)",
+          "name": { "cs": "Bloková pokuta za parkování", "en": "On-the-spot parking fine" },
+          "fine_min": 200,
+          "fine_max": 1500,
+          "warning_allowed": true,
+          "imprisonment_possible": false,
+          "imprisonment_days_min": 0,
+          "imprisonment_days_max": 0,
+          "recidivism_multiplier": 1.2,
+          "min_priors": 0
+        }
+      ]
+    },
+    {
+      "id": "assault",
+      "type": "violent",
+      "name": { "cs": "Napadení", "en": "Assault" },
+      "zones": ["city_center", "residential", "industrial"],
+      "time_of_day": ["any"],
+      "sanctions": [
+        {
+          "code": "§146 tr. zákoníku",
+          "name": { "cs": "Ublížení na zdraví", "en": "Bodily harm" },
+          "fine_min": 5000,
+          "fine_max": 20000,
+          "warning_allowed": false,
+          "imprisonment_possible": true,
+          "imprisonment_days_min": 30,
+          "imprisonment_days_max": 1095,
+          "recidivism_multiplier": 1.6,
+          "min_priors": 0
+        }
+      ]
+    },
+    {
+      "id": "domestic_violence",
+      "type": "violent",
+      "name": { "cs": "Domácí násilí", "en": "Domestic violence" },
+      "zones": ["residential"],
+      "time_of_day": ["any"],
+      "sanctions": [
+        {
+          "code": "§199 tr. zákoníku",
+          "name": { "cs": "Týrání osoby žijící ve společném obydlí", "en": "Abuse of a person living in a shared dwelling" },
+          "fine_min": 0,
+          "fine_max": 0,
+          "warning_allowed": false,
+          "imprisonment_possible": true,
+          "imprisonment_days_min": 180,
+          "imprisonment_days_max": 2920,
+          "recidivism_multiplier": 1.0,
+          "min_priors": 0
+        }
+      ]
+    },
+    {
+      "id": "disturbing_night_peace",
+      "type": "public_order",
+      "name": { "cs": "Rušení nočního klidu", "en": "Disturbing the peace at night" },
+      "zones": ["residential", "city_center"],
+      "time_of_day": ["night"],
+      "sanctions": [
+        {
+          "code": "§47 odst. 1 písm. b) přest. zákona",
+          "name": { "cs": "Přestupek proti veřejnému pořádku", "en": "Public order offense" },
+          "fine_min": 500,
+          "fine_max": 3000,
+          "warning_allowed": true,
+          "imprisonment_possible": false,
+          "imprisonment_days_min": 0,
+          "imprisonment_days_max": 0,
+          "recidivism_multiplier": 1.3,
+          "min_priors": 0
+        }
+      ]
+    },
+    {
+      "id": "burglary",
+      "type": "property",
+      "name": { "cs": "Vloupání", "en": "Burglary" },
+      "zones": ["residential", "industrial"],
+      "time_of_day": ["any"],
+      "sanctions": [
+        {
+          "code": "§205 odst. 2 tr. zákoníku",
+          "name": { "cs": "Krádež vloupáním", "en": "Theft by breaking and entering" },
+          "fine_min": 0,
+          "fine_max": 0,
+          "warning_allowed": false,
+          "imprisonment_possible": true,
+          "imprisonment_days_min": 60,
+          "imprisonment_days_max": 1825,
+          "recidivism_multiplier": 1.0,
+          "min_priors": 0
+        }
+      ]
+    },
+    {
+      "id": "public_intoxication",
+      "type": "public_order",
+      "name": { "cs": "Opilství na veřejnosti", "en": "Public intoxication" },
+      "zones": ["residential", "city_center"],
+      "time_of_day": ["any"],
+      "sanctions": [
+        {
+          "code": "§30 přest. zákona",
+          "name": { "cs": "Přestupek proti veřejnému pořádku – podnapilost", "en": "Public order offense – intoxication" },
+          "fine_min": 500,
+          "fine_max": 2000,
+          "warning_allowed": true,
+          "imprisonment_possible": false,
+          "imprisonment_days_min": 0,
+          "imprisonment_days_max": 0,
+          "recidivism_multiplier": 1.2,
+          "min_priors": 0
+        }
+      ]
+    },
+    {
+      "id": "trespassing",
+      "type": "property",
+      "name": { "cs": "Neoprávněný vstup na pozemek", "en": "Trespassing" },
+      "zones": ["industrial", "rural"],
+      "time_of_day": ["any"],
+      "sanctions": [
+        {
+          "code": "§208 tr. zákoníku",
+          "name": { "cs": "Neoprávněný zásah do práva k domu, bytu nebo nebytovému prostoru", "en": "Unlawful trespass on property" },
+          "fine_min": 1000,
+          "fine_max": 6000,
+          "warning_allowed": true,
+          "imprisonment_possible": false,
+          "imprisonment_days_min": 0,
+          "imprisonment_days_max": 0,
+          "recidivism_multiplier": 1.3,
+          "min_priors": 0
+        }
+      ]
+    },
+    {
+      "id": "industrial_theft",
+      "type": "property",
+      "name": { "cs": "Krádež průmyslového majetku", "en": "Theft of industrial property" },
+      "zones": ["industrial"],
+      "time_of_day": ["any"],
+      "sanctions": [
+        {
+          "code": "§205 odst. 1 tr. zákoníku",
+          "name": { "cs": "Krádež", "en": "Theft" },
+          "fine_min": 2000,
+          "fine_max": 15000,
+          "warning_allowed": false,
+          "imprisonment_possible": true,
+          "imprisonment_days_min": 30,
+          "imprisonment_days_max": 730,
+          "recidivism_multiplier": 1.5,
+          "min_priors": 0
+        }
+      ]
+    },
+    {
+      "id": "poaching",
+      "type": "property",
+      "name": { "cs": "Pytláctví", "en": "Poaching" },
+      "zones": ["rural"],
+      "time_of_day": ["any"],
+      "sanctions": [
+        {
+          "code": "§304 tr. zákoníku",
+          "name": { "cs": "Pytláctví", "en": "Poaching" },
+          "fine_min": 3000,
+          "fine_max": 20000,
+          "warning_allowed": true,
+          "imprisonment_possible": true,
+          "imprisonment_days_min": 0,
+          "imprisonment_days_max": 730,
+          "recidivism_multiplier": 1.4,
+          "min_priors": 0
+        }
+      ]
+    },
+    {
+      "id": "illegal_dumping",
+      "type": "public_order",
+      "name": { "cs": "Nedovolené ukládání odpadu (černá skládka)", "en": "Illegal dumping" },
+      "zones": ["rural"],
+      "time_of_day": ["any"],
+      "sanctions": [
+        {
+          "code": "§68 zákona o odpadech",
+          "name": { "cs": "Přestupek na úseku odpadového hospodářství", "en": "Waste management offense" },
+          "fine_min": 1000,
+          "fine_max": 25000,
+          "warning_allowed": true,
+          "imprisonment_possible": false,
+          "imprisonment_days_min": 0,
+          "imprisonment_days_max": 0,
+          "recidivism_multiplier": 1.6,
+          "min_priors": 0
+        }
+      ]
+    },
+    {
+      "id": "illegal_construction",
+      "type": "public_order",
+      "name": { "cs": "Nedovolená stavba", "en": "Illegal construction" },
+      "zones": ["rural"],
+      "time_of_day": ["any"],
+      "sanctions": [
+        {
+          "code": "§178 stavebního zákona",
+          "name": { "cs": "Přestupek na úseku stavebního řádu", "en": "Building regulation offense" },
+          "fine_min": 5000,
+          "fine_max": 50000,
+          "warning_allowed": false,
+          "imprisonment_possible": false,
+          "imprisonment_days_min": 0,
+          "imprisonment_days_max": 0,
+          "recidivism_multiplier": 1.3,
+          "min_priors": 0
+        }
+      ]
+    }
+  ]
+}

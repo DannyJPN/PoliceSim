@@ -1,0 +1,15 @@
+; Engine configuration file.
+; PoliceSim — realistický policejní simulátor / realistic police simulator
+
+config_version=5
+
+[application]
+
+config/name="PoliceSim"
+config/description="Realistický policejní simulátor v otevřeném světě / Open-world realistic police simulator"
+config/features=PackedStringArray("4.3")
+run/main_scene=""
+
+[locale]
+
+locale_filter_mode=0
